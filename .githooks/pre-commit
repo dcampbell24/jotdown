@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# This matches what is done in GitHub Actions (some of the checks are missing).
+
+rustup update stable
+
+# Unit test all crates (stable)
+cargo +stable test --workspace || exit 1
+cargo +stable test --workspace --no-default-features || exit 1
+
+# Lint (stable)
+cargo +stable clippy --workspace -- -D warnings || exit 1
+cargo +stable clippy --workspace --no-default-features -- -D warnings || exit 1
+cargo +stable clippy --workspace --all-features -- -D warnings || exit 1
+cargo +stable fmt --all -- --check || exit 1
