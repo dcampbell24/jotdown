@@ -10,6 +10,8 @@ env:
 jobs:
   create:
     name: create release
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -106,6 +108,8 @@ jobs:
 
   build_wasm:
     name: build wasm lib
+    permissions:
+      contents: write
     needs: ['create']
     runs-on: ubuntu-latest
     steps:
