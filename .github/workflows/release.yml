@@ -25,9 +25,9 @@ jobs:
 
   build_bin:
     name: build binary
-    needs: ['create']
     permissions:
       contents: write
+    needs: ['create']
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
