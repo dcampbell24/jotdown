@@ -20,7 +20,7 @@ jobs:
           persist-credentials: false
       - name: verify version matches
         shell: bash
-        run: grep -q 'version = "$REF_NAME"' Cargo.toml || { echo version mismatch >&2 && exit 1; }
+        run: grep -q "version = $REF_NAME" Cargo.toml || { echo version mismatch >&2 && exit 1; }
       - name: create release
         run: gh release create "$REF_NAME" --draft --verify-tag --title "$REF_NAME"
 
