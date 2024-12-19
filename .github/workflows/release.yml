@@ -23,7 +23,7 @@ jobs:
         shell: bash
         run: grep -q "version = $REF_NAME" Cargo.toml || { echo version mismatch >&2 && exit 1; }
       - name: create release
-        run: gh release create "$REF_NAME" --draft --verify-tag --title "$REF_NAME"
+        run: echo gh release create "$REF_NAME" --draft --verify-tag --title "$REF_NAME"
 
   build_bin:
     name: build binary
@@ -103,7 +103,7 @@ jobs:
     - name: Upload release archive
       shell: bash
       run: |
-        gh release upload "$REF_NAME" ${{ env.ASSET }}
+        echo gh release upload "$REF_NAME" ${{ env.ASSET }}
 
   build_wasm:
     name: build wasm lib
@@ -131,5 +131,5 @@ jobs:
     - name: upload
       shell: bash
       run: |
-        gh release upload "$REF_NAME" examples/jotdown_wasm/pkg/jotdown_wasm_bg.wasm
-        gh release upload "$REF_NAME" examples/jotdown_wasm/pkg/jotdown_wasm.js
+        echo gh release upload "$REF_NAME" examples/jotdown_wasm/pkg/jotdown_wasm_bg.wasm
+        echo gh release upload "$REF_NAME" examples/jotdown_wasm/pkg/jotdown_wasm.js
